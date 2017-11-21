@@ -31,9 +31,6 @@ $zmogus = new Zmogus('Jonas', 'Jonaitis'),
 $zmogus = new Zmogus('Petras', 'Petraitis')];
 
 
-//echo $zmogus->vardas();
-//echo $zmogus->pavarde();
-
 ?>
 <table>
     <tr>
