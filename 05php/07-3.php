@@ -1,7 +1,10 @@
 <?php
 $suma = [];
 $i = 0;
-$a = [ [1, 3, 4], [2, 5], [2 => 3, 5=> 8], [1, 1, 5 => 1] ];
+$a = [ [1, 3, 4], 
+     [2, 5], 
+     [2 => 3, 5=> 8], 
+     [1, 1, 5 => 1] ];
 
 foreach ($a as $value){
     foreach ($value as $verte){
@@ -21,7 +24,9 @@ foreach ($suma as $value){
 }  
 echo '<br>';
 echo 'Didziausia suma yra: '.$didziausias.'<br>';   
-
+foreach $a as $eilute{
+foreach ($eilute as $stulpelis =>$reiksme)
+}
 ?>
 
-
+foreach ($eilute as $stulpelis =>$reiksme)
