@@ -47,3 +47,29 @@ $zmogus = new Zmogus('Petras', 'Petraitis')];
 
 </body>
 </html>
+
+class Zmogus
+{
+public $vardas;
+public $pavarde;
+
+function __construct($vardas, $pavarde) {
+    $this->vardas = $a;
+    $this->pavarde = $b;
+}
+
+function vardas() {
+    return $this->vardas;
+}
+function pavarde() {
+    return $this->pavarde;
+}
+}
+$zmones1 = [
+
+$zmogus = new Zmogus('Jonas', 'Jonaitis'),
+$zmogus = new Zmogus('Adomas', 'Adomaitis')];
+
+$zmones1[] = new Zmogus('Petras', 'petraitis');
+
+
