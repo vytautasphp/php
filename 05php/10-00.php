@@ -1,96 +1,101 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-    <title>pratimas 9.2</title>
-</head>
-<body>
-<h1>Kuku</h1>
+    <head>
+        <title>10-00 uzduotis</title>
+    </head>
+    <body>
+
 <?php
 
-class Mokinys {
-    public $vardas;
-    public $pazymiai;
+class Mokinys
+{
+public $gimimo;
+public $vardas;
+public $pavarde;
+public $pazymiai;
 
-    function __construct($v, $p) {
-        $this->vardas = $v;
-        $this->pazymiai = $p;
+    function __construct($gimimo, $a, $b, $pazymiai) {
+        $this->data = $gimimo;
+        $this->vardas = $a;
+        $this->pavarde = $b;
+        $this->pazymiai = $pazymiai;
     }
 
-    function trimestras() {
+    function gimimo(){
+        $datetime1 = new DateTime($this->data);
+        $datetime2 = date_create();
+        $interval = $datetime1->diff($datetime2);
+        //echo $interval->format('%Y');
+        return $interval->format('%Y');
+    }
+    function vidurkis(){
         $trimestras = [];
-        foreach ($this->pazymiai as $dalykas => $pazymiai) {
-            $vidurkis = $this->vidurkis($pazymiai);
-            $trimestras[$dalykas] = $vidurkis;
+        foreach ($this->pazymiai as $balas){
+            foreach ($balas as $skaicius) {
+                $sum += $skaicius;
+            }
+            $balai = $sum / count($balas);
+            $suma += $balai;
+            $sum = 0;
         }
+        $trimestras = $suma / count($this->pazymiai);
         return $trimestras;
     }
+    function vardas() {
+        return $this->vardas;
+    }
+    function pavarde() {
+        return $this->pavarde;
+    }
 
-    function vidurkis($pazymiai) {
-        $sum = 0;
-        foreach ($pazymiai as $pazymys) {
-            $sum += $pazymys;
+    static function lyginimas($a, $b)
+    {
+        $al = strtolower($a->vidurkis());
+        $bl = strtolower($b->vidurkis());
+        if ($al == $bl) {
+            return 0;
         }
-        return $sum / count($pazymiai);
+        return ($al > $bl) ? -1 : +1;
     }
-
-    function trimestroVidurkis() {
-        $trimestras = $this->trimestras($m);
-        return $this->vidurkis($trimestras);
-    }
-} 
-
-$mokiniai = [
-    new Mokinys('Jonas', ['lietuviu' => [4, 8, 6, 7], 'anglu' =>[6, 7, 8], 'matematika' => [3, 5, 4]]), 
-    new Mokinys('Ona', ['anglu' => [9, 8, 10], 'lietuviu' => [10, 9, 10], 'matematika' => [10, 10, 9, 9]]),
-    new Mokinys('Petras', ['anglu' => [5, 8, 7], 'lietuviu' => [6, 9, 8], 'matematika' => [10, 10, 9, 9]])
-];
-
-
-//ksort($mokiniai, 'vidurkis');
-for ($i = 0; $i < count($mokiniai) - 1; $i++) {
-    
-    $x = $mokiniai[$i];
-    $index = $i;
-
-    for ($j = $i + 1; $j < count($mokiniai); $j++) {
-        if ($x->trimestroVidurkis() > $mokiniai[$j]->trimestroVidurkis()) {
-            $x = $mokiniai[$j];
-            $index = $j;
-        }
-    }
-    $y = $mokiniai[$i];
-    $mokiniai[$i] = $mokiniai[$index];
-    $mokiniai[$index] = $y;
 }
 
+$mokiniai = [
+    new Mokinys('1998-01-02','Jonas', 'Jonaitis',['anglu'=>[10,7,6], 'matematika'=>[8,3,7],'lietuviu'=>[4,5,6], 'fizika'=>[9,7,8]]), 
+    new Mokinys('2000-10-08','Adomas', 'Adomaitis',['anglu'=>[6,7,6], 'matematika'=>[7,7,8],'lietuviu'=>[5,4,5], 'fizika'=>[7,5,8]]),
+    new Mokinys('1997-11-02','Ona', 'Onaityte',['anglu'=>[10,10,9], 'matematika'=>[10,10,10],'lietuviu'=>[10,8,10], 'fizika'=>[10,10,10]])
+];
 
+ usort($mokiniai, ["Mokinys", "lyginimas"]);
+ 
 ?>
+ <table border="1">
+ <tr>
+     <th>Vardas</th>
+     <th>pavarde</th>
+     <th>metai</th>
+     <th>Pazymiai</th>
+     <th>Vidurkis</th>
+ </tr>
+ <?php foreach ($mokiniai as $item): ?>
+    <?php if($item->gimimo() >= 18): ?>
+ <tr>
+     <td><?php echo $item->vardas; ?></td>
+     <td><?php echo $item->pavarde; ?></td>
+     <td><?php echo $item->gimimo(); ?></td>
+     <td>
+         <?php foreach ($item->pazymiai as $dalykas => $pazymiai): ?>
+             <div>
+                 <?php echo $dalykas . ': ' . implode(', ', $pazymiai); ?>
+             </div>
+         <?php endforeach; ?>
+     </td>
+     <td><?php echo round($item->vidurkis()); ?></td>
+ </tr>
+    <?php endif; ?>
+ <?php endforeach; ?>
 
-<table border="1">
-    <tr>
-        <th>Vardas</th>
-        <th>Pazymiai</th>
-        <th>Vidurkis</th>
-    </tr>
-    <?php foreach ($mokiniai as $mokinys): ?>
-    <tr>
-        <td><?php echo $mokinys->vardas; ?></td>
-        <td>
-            <?php foreach ($mokinys->pazymiai as $dalykas => $pazymiai): ?>
-                <div>
-                    <?php echo $dalykas . ': ' . implode(', ', $pazymiai); ?>
-                </div>
-            <?php endforeach; ?>
-        </td>
-        <td><?php echo $mokinys->trimestroVidurkis() ?></td>
-    </tr>
-    <?php endforeach; ?>
 </table>
 
 </body>
 </html>
-
-
-
 
