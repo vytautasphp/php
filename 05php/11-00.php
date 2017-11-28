@@ -1,10 +1,10 @@
 <?php
 class Radar
 {
-public $date;  //data ir laikas
-public $number; //automobilio numeris
-public $distance; //nuvaziuotas atstumas metrais
-public $time; //sugaistas laikas sekundemis
+private $date;  //data ir laikas
+private $number; //automobilio numeris
+private $distance; //nuvaziuotas atstumas metrais
+private $time; //sugaistas laikas sekundemis
 
     function __construct($data, $number, $distance, $time) {
         $this->date = $data;
@@ -12,8 +12,19 @@ public $time; //sugaistas laikas sekundemis
         $this->distance = $distance;
         $this->time = $time;
     }
-
-    function greitis(){
+    public function data(){
+        return $this->date;
+    }
+    public function numeris(){
+        return $this->number;
+    }
+    public function distancija(){
+        return $this->distance;
+    }
+    public function laikas(){
+        return $this->time;
+    }
+   public function greitis(){
         $speed = ($this->distance / $this->time) * 3.6;   
         return round($speed,1);
     }
@@ -41,6 +52,7 @@ usort($radaras, ["Radar", "lyginimas"]);
 
 foreach ($radaras as $auto){
     $auto->greitis();
-    echo ' Data: ' . $auto->date. ' Numeris: ' . $auto->number . ' Laikas: ' . $auto->time. ' Greitis(km/h): ' .$auto->greitis() . ' ' .'<br>';
+ 
+    echo ' Data: ' . $auto->data(). ' Numeris: ' . $auto->numeris() . ' Laikas: ' . $auto->laikas(). ' Distancija: ' . $auto->distancija().' Greitis(km/h): ' .$auto->greitis() . ' ' .'<br>';
 }
 ?>
