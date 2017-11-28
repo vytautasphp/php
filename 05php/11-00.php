@@ -19,8 +19,8 @@ public $time; //sugaistas laikas sekundemis
     }
     static function lyginimas($a, $b)
     {
-        $a = $a->greitis();
-        $b = $b->greitis();
+        $al = $a->greitis();
+        $bl = $b->greitis();
         if ($al == $bl) {
             return 0;
         }
@@ -28,15 +28,13 @@ public $time; //sugaistas laikas sekundemis
 
     }
 
-
-
 }
 
 $radaras = [
     new Radar('2017-01-11 14:25:15', 'ASE938', 5000, 100),
-    new Radar('2016-10-13 14:25:15', 'ASE938', 2000, 300),
-    new Radar('2017-10-11 14:25:15', 'ASE938', 1000, 58),
-    new Radar('2017-11-11 14:25:15', 'ASE938', 1000, 100)
+    new Radar('2016-10-13 14:25:15', 'BSS123', 2000, 300),
+    new Radar('2017-10-11 14:25:15', 'CDS523', 1000, 58),
+    new Radar('2017-11-11 14:25:15', 'AHE538', 1000, 100)
 ];
 
 usort($radaras, ["Radar", "lyginimas"]);
