@@ -50,8 +50,8 @@ public $pazymiai;
 
     static function lyginimas($a, $b)
     {
-        $al = strtolower($a->vidurkis());
-        $bl = strtolower($b->vidurkis());
+        $al = $a->vidurkis();
+        $bl = $b->vidurkis();
         if ($al == $bl) {
             return 0;
         }
