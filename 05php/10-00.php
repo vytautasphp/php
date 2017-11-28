@@ -26,7 +26,7 @@ public $pazymiai;
         $datetime2 = date_create();
         $interval = $datetime1->diff($datetime2);
         //echo $interval->format('%Y');
-        return $interval->format('%Y');
+        return $interval->format('%Y'); // diff->y
     }
     function vidurkis(){
         $trimestras = [];
