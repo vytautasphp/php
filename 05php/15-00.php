@@ -44,7 +44,7 @@ if ($conn->connect_error) {
 
 
 <?php //Duomenu iterpimas
-    if ($_REQUEST["data"] >''){
+    if ($_REQUEST["data"] >'' && $_REQUEST["id"]==''){
         $data = $_REQUEST["data"];
         $numeris = $_REQUEST["numeris"];
         $kelias = $_REQUEST["atstumas"];
@@ -61,15 +61,16 @@ if ($conn->connect_error) {
     }
     
         //Duomenu modifikavimas
-    if ($_REQUEST["atstumas"] && $_REQUEST["laikas"] >''){
+    if ($_REQUEST["atstumas"] && $_REQUEST["laikas"] && $_REQUEST["data"] >''){
         $id = $_REQUEST["id"];
+        $data = $_REQUEST["data"];
         $kelias = $_REQUEST["atstumas"];
         $laikas = $_REQUEST["laikas"];
         
-        $sql = "UPDATE radars SET distance = ?, `time` = ? WHERE id = ?"; 
+        $sql = "UPDATE radars SET `date` = ?, `distance` = ?, `time` = ? WHERE id = ?"; 
         $stmt = $conn->prepare($sql);
         
-        $stmt->bind_param("ddi", $kelias, $laikas, $id);
+        $stmt->bind_param("sddi",  $data, $kelias, $laikas, $id);
         
         $stmt->execute();
     }
