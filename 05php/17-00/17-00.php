@@ -16,15 +16,7 @@ $values = [];
 ?>
 
 <?php 
- if (isset($_GET['automobiliai'])) {
-    $sql = 'SELECT number, COUNT(*) AS kiekis, MAX(distance/time*3.6) AS greitis
-    FROM radars GROUP BY number';
-    //$conn->real_escape_string($_GET["edit"]);
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $values = $result->fetch_assoc();
-    }
-}
+ 
     if (isset($_GET['edit'])) {
         $sql = 'SELECT * FROM radars WHERE `id` = ' . intval($_GET['edit']);
         //$conn->real_escape_string($_GET["edit"]);
@@ -89,7 +81,7 @@ $values = [];
         <button name="home">Home</button>
     </form>
 
-
+   
 <?php
     if (isset($_GET['automobiliai'])) {
         $sql = 'SELECT number, COUNT(*) AS kiekis, MAX(distance/time*3.6) AS speed
@@ -112,8 +104,13 @@ $values = [];
         
     }
     else {
+        // if (isset($_GET['pirmyn'])){$offset = $offset + $_GET['pirmyn'];}
+        // else if (isset($_GET['atgal'])){$offset = $offset + $_GET['atgal'];}
+        
+        $offset = 0;
+        
     // išvedame
-    $sql = 'SELECT *, `distance`/`time`*3.6 as `speed` FROM radars ORDER BY `id`, `date` DESC';
+    $sql = 'SELECT *, `distance`/`time`*3.6 as `speed` FROM radars ORDER BY `number`, `date` DESC LIMIT 10 OFFSET '.$offset;
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -144,7 +141,10 @@ $values = [];
                     </form>
                 </tr>
             <?php endwhile; ?>
-        
+            <form action="" method="get">
+                        <td><button type="submit" name="pirmyn"value="5" >pirmyn</button></td>
+                        <td><button type="submit" name="atgal"value="-5" >atgal</button></td>
+                    </form>
         </table>
     </body>
 </head
@@ -154,3 +154,4 @@ $values = [];
     }
     $conn->close();
 }?>
+
