@@ -21,6 +21,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die('Nepavyko prisjungti: ' . $conn->connect_error);
 }
+
+
 ?>
 <h2>Prisijungti</h2>
 <?php if (isset($_get['data'])): ?>
@@ -28,7 +30,7 @@ if ($conn->connect_error) {
 <?php endif; ?>
 <form action="" method="get"><br> <?php//jei nenurodom adreso i ta pati eina?>
      data ir laikas
-     <br><input name="data" type="text"></br>
+     <br><input name="data" type="text" value=""></br>
     numeris
     <br><input name="numeris" type="text"></br>
     atstumas metrais
@@ -58,6 +60,7 @@ if ($conn->connect_error) {
         $stmt->execute();
 
         if(isset($_GET['data'])){unset($_GET['data']);}
+        
     }
     
         //Duomenu modifikavimas
@@ -76,6 +79,7 @@ if ($conn->connect_error) {
     }
 
 ?>
+
 <?php
 lentele($conn);
 function lentele($conn) {
