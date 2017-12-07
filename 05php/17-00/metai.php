@@ -5,7 +5,6 @@ if ($result->num_rows > 0) {
             <tr>
                 
                 <th>Data</th>
-               
                 <th>Max Greitis (km/h)</th>
                 <th>Min greitis (km/h)</th>
                 <th>Vid greitis (km/h)</th>
@@ -15,8 +14,7 @@ if ($result->num_rows > 0) {
             <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
                     
-                    <td><?= $row['date']; ?></td>
-                    
+                    <td><?= $row['date']; ?></td>           
                     <td><?= round($row['speed'], 1); ?></td>
                     <td><?= round($row['minspeed'], 1); ?></td>
                     <td><?= round($row['avgspeed'], 1); ?></td>
