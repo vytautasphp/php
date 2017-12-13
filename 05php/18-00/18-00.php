@@ -138,8 +138,8 @@ echo var_dump($values);
     // išvedame
     $sql = 'SELECT *, distance/time*3.6 as speed, v.name as name, v.city as city, a.driverid as driverid
             FROM radars a
-            LEFT JOIN drivers v ON a.driverId = v.driverId
-            WHERE v.driverId is NULL OR a.driverId = v.driverId
+            LEFT JOIN drivers v ON v.driverId is NULL OR a.driverId = v.driverId
+           
             ORDER BY id';
 
     $result = $conn->query($sql);
@@ -230,4 +230,8 @@ echo var_dump($values);
 
     $conn->close();
 }?>
+
+
+
+
 

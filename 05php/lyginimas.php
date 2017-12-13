@@ -8,7 +8,7 @@
             $a = [
                 [vardas => 'Jonas', ugis => 2.0],
                 [vardas => 'Petras', ugis => 1.75],
-                [vardas => 'Antanas', ugis => 1.8]];
+                [vardas => 'Antanas', ugis => 1.8];
             
           
 
