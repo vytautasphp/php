@@ -16,4 +16,4 @@ for ($m;$m>0;$m-1){
     }
     }
 }
-echo var_dump($a);nbbnb
+echo var_dump($a);
