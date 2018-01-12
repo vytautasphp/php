@@ -1,7 +1,7 @@
 <?php
 
 echo ' duotas masyvas:  ';
-$a=[-10, 0, 2, 9, -5];
+$a=[0, 5, 3, 2];
 
 for ($i = 0; $i < count($a); $i++){
     echo ' '.$a[$i];
